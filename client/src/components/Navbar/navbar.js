@@ -1,7 +1,8 @@
-import React, { useState, useEffect,useCallback } from 'react'
-import {Avatar,AppBar, Button, Typography, Toolbar } from '@material-ui/core';
+import React, { useState, useEffect, useCallback } from 'react'
+import { Avatar, AppBar, Button, Typography, Toolbar } from '@material-ui/core';
 import useStyles from './styles';
-import { useHistory, useLocation,Link } from 'react-router-dom';
+import logo from '../../images/camera1.jpeg'
+import { useHistory, useLocation, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { LogOut } from '../../actions/authactions';
 import decode from 'jwt-decode'
@@ -16,38 +17,35 @@ const Navbar = () => {
     const [isUser, setUser] = useState(JSON.parse(window.localStorage.getItem('user')));
 
     // usecallback hook will make sure that the handlelogout will not have different refrence whenever the component is rendered until history and dispatch is changed...
-    const handleLogout =useCallback( () => {
+    const handleLogout = useCallback(() => {
         dispatch(LogOut());
-        history.push('/');
-        setUser(null);
-    },[history,dispatch]);
+         setUser(null);
+        history.push('/Auth');
+    }, [history, dispatch]);
 
     useEffect(() => {
-          
-       const token=isUser?.token;
-       if (token) {
-        const decodedToken = decode(token);
-        //  console.log(decodedToken);
-  
-        if (decodedToken.exp * 1000 < new Date().getTime()) 
-        handleLogout();
-      }
+
+        const token = isUser?.token;
+        if (token) {
+            const decodedToken = decode(token);
+            //  console.log(decodedToken);
+
+            if (decodedToken.exp * 1000 < new Date().getTime())
+                handleLogout();
+        }
         setUser(JSON.parse(window.localStorage.getItem('user')));
-    }, [location,handleLogout,isUser?.token]);
+    }, [location, handleLogout, isUser?.token]);
 
-    // console.log(isUser);
 
-    const handleSignin = () => {
+     const handleSignin = () => {
         history.push('/Auth');
     }
-
-    
-
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-                <Typography className={classes.heading} variant="h2" align="center"><Link className={classes.heading} to='/'>Memories</Link></Typography>
+               <Link to='/' className={classes.headingLink}><Typography className={classes.heading} variant="h2" align="center">clickNclip</Typography></Link> 
+                <Link to='/'><img className={classes.image} src={logo} alt="icon" height="60" /></Link>
             </div>
             <Toolbar className={classes.toolbar}>
                 {

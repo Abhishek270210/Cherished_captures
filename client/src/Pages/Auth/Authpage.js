@@ -59,11 +59,11 @@ const Authpage = () => {
 
     return (
         <Container component="main" maxWidth="xs">
-            <Paper className={classes.paper} elevation={3}>
+            <Paper className={classes.paper} elevation={10} >
                 <Avatar className={classes.avatar}>
                     <LockRounded />
                 </Avatar>
-                <Typography component="h1" variant="h5">Sign Up</Typography>
+                <Typography component="h1" variant="h5">{signUp ? `Sign up`:`Sign in`}</Typography>
                 <form className={classes.form} onSubmit={handleAuth} >
                     <Grid container spacing={2}>
                         {

@@ -26,7 +26,7 @@ export const signInaction=(formData,history)=>async(dispatch)=>{
         dispatch(signInObj);
         history.push('/')
     } catch (error) {
-        alert("Enter valid details !!!");
+        alert("Enter valid credentials !!!");
         console.log(error);
     }
 }
@@ -42,7 +42,7 @@ export const signUpaction=(formData,history)=>async(dispatch)=>{
         dispatch(signUpObj);
         history.push('/');
     } catch (error) {
-        alert("Enter valid details !!!");
+        alert("Enter valid credentials !!!");
         console.log(error);
     }
 }

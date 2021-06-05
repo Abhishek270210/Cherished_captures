@@ -24,7 +24,7 @@ const Post = ({ post,curr,setCurrent,myposts }) => {
     }
 
     return (
-        <Card className={classes.card}>
+        <Card className={classes.card} elevation={8} >
 
         <ButtonBase component="span" className={classes.cardAction} onClick={()=>openPost(post)}>
 
@@ -34,7 +34,7 @@ const Post = ({ post,curr,setCurrent,myposts }) => {
                 <Typography variant="body2">{moment(post.time).fromNow()}</Typography>
             </div>
             <div className={classes.details}>
-                <Typography variant="body2" color="textSecondary" component="h2">Tag-{post.tags}</Typography>
+                <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map(tag=>`#${tag} `)}</Typography>
             </div>
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
             <CardContent>
@@ -53,13 +53,13 @@ const Post = ({ post,curr,setCurrent,myposts }) => {
             <CardActions className={classes.cardActions}>
               {
                 (post.likes.find(id=>id===currentuser?.profile?.googleId || id===currentuser?.profile?._id)) ?
-                <Button size="small" color="primary" disabled={!currentuser?.profile} onClick={()=>dispatch(likePost(post))} ><ThumbUpAltIcon /> Like{post.likes.length}</Button>
+                <Button size="small" color="primary" disabled={!currentuser?.profile} onClick={()=>dispatch(likePost(post))} ><ThumbUpAltIcon />&nbsp;{post.likes.length}</Button>
                 :
-                <Button size="small" color="primary" disabled={!currentuser?.profile} onClick={()=>dispatch(likePost(post))} ><ThumbUpAltOutlined /> Like{post.likes.length}</Button>
+                <Button size="small" color="primary" disabled={!currentuser?.profile} onClick={()=>dispatch(likePost(post))} ><ThumbUpAltOutlined />&nbsp;{post.likes.length}</Button>
               }
                {
                    ((post.creator===currentuser?.profile?.googleId || post.creator===currentuser?.profile?._id) && !myposts) ? 
-                   <Button size="small" color="primary" onClick={()=>dispatch(deleteData(post))}  ><DeleteIcon /> Delete</Button>
+                   <Button size="small" style={{color:'red'}} onClick={()=>dispatch(deleteData(post))}  ><DeleteIcon /></Button>
                    :null
                }
             </CardActions>

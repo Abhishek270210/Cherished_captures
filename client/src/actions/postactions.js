@@ -72,6 +72,7 @@ export const postData=(Data)=>async(dispatch)=>{
     try {
         dispatch({type:'LOADING_TRUE'});
          const {data}=await api.postData(Data);
+         console.log(data);
         const postDataobj={
             type:'POST_NEW_DATA',
             payload:data,

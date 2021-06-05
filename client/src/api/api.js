@@ -20,7 +20,7 @@ export const fetchCurrentUserPosts=()=>API.get(`/posts/myposts`);
 
 export const fetchParticularPost=(id)=>API.get(`/posts/${id}`);
 
-export const fetchSearchData=(searchFileds)=>API.get(`/posts/search?title=${searchFileds.title || 'none'}&tag=${searchFileds.tag}`);
+export const fetchSearchData=(searchFileds)=>API.get(`/posts/search?title=${searchFileds.title || 'none'}&tags=${searchFileds.tags}`);
 
 export const postData=(newPost)=>API.post(`/posts`,newPost);
 

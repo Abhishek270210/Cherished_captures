@@ -1,6 +1,6 @@
 import React from 'react'
 import Post from './Post/post';
-import { Grid, CircularProgress,Paper } from '@material-ui/core';
+import { Grid, CircularProgress,Card,Typography,CardContent } from '@material-ui/core';
 import {useSelector} from 'react-redux'
 import useStyles from './styles';
 
@@ -19,11 +19,13 @@ const Posts=({curr,setCurrent})=> {
     if(!allposts.length)
     {
       return (
-          <Paper>
-             NO POSTS AVAILABLE
-             <br/>
-             BE THE FIRST ONE TO CREATE POST...
-          </Paper>
+        <Card>
+        <CardContent>
+          <Typography component="h1" align="center" >NO POSTS AVAILABLE !!!</Typography>
+          <br/>
+          <Typography component="h2" align="center" >BE THE FIRST ONE TO CREATE ...</Typography>
+        </CardContent>
+      </Card>
       )
     }
     
@@ -32,7 +34,7 @@ const Posts=({curr,setCurrent})=> {
 
         <Grid className={classes.container} container alignItems="stretch" spacing={4}>
         {allposts.map((post) => (
-          <Grid key={post._id} item xs={12} sm={6} md={6} lg={4}>
+          <Grid key={post._id} item xs={12} sm={6} md={4} lg={4}>
             <Post post={post} curr={curr} setCurrent={setCurrent} />
           </Grid>
         ))}

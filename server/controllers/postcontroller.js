@@ -4,11 +4,11 @@ import mongoose from 'mongoose';
 export const getData=async(req,res)=>{
     const {page}=req.query;
     try {
-        const limit=6;
+        const limit=9;
         const startind=(page-1)*limit;
         const totalposts=await PostMessage.countDocuments();
         const totalpages=Math.ceil(totalposts/limit);
-        const allposts=await PostMessage.find().sort({_id:-1}).limit(6).skip(startind);
+        const allposts=await PostMessage.find().sort({_id:-1}).limit(9).skip(startind);
         res.send({allposts,totalpages,currentpage:Number(page)});
     } catch (error) {
         // console.log("error in getting data ")
@@ -28,10 +28,11 @@ export const getParticularData=async(req,res)=>{
 }
 
 export const getSearchData=async(req,res)=>{
-     const {title,tag}=req.query;
+     const {title,tags}=req.query;
+    //  console.log(req.query);
     try {
          const searchtitle = new RegExp(title, 'i');
-        const posts=await PostMessage.find({ $or:[{title:searchtitle},{tags:tag}] });
+        const posts=await PostMessage.find({ $or:[{title:searchtitle},{tags:{$in:tags.split(',')} }] });
         // console.log(posts);
         res.send(posts);
     } catch (error) {
@@ -50,6 +51,7 @@ export const getCurrentUserPosts=async(req,res)=>{
 
 export const postData=async(req,res)=>{
     const newpost=req.body;
+    // console.log(newpost);
     const newPost= new PostMessage({...newpost,creator:req.userId,time:new Date().toISOString()});
     try {
       await newPost.save();

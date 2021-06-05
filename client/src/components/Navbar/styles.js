@@ -20,8 +20,11 @@ export default makeStyles((theme) => ({
     fontSize: '2em',
     fontWeight: 300,
   },
+  headingLink:{
+    textDecoration:'none'
+  },
   image: {
-    marginLeft: '10px',
+    marginLeft: '20px',
     marginTop: '5px',
   },
   toolbar: {
