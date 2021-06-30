@@ -44,7 +44,7 @@ const Navbar = () => {
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-               <Link to='/' className={classes.headingLink}><Typography className={classes.heading} variant="h2" align="center">clickNclip</Typography></Link> 
+               <Link to='/' className={classes.headingLink}><Typography className={classes.heading} variant="h2" align="center">Cherished Captures</Typography></Link> 
                 <Link to='/'><img className={classes.image} src={logo} alt="icon" height="60" /></Link>
             </div>
             <Toolbar className={classes.toolbar}>

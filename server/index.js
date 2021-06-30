@@ -15,7 +15,7 @@ app.use(bodyParser.json({limit:"30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/memoriesdb",{useNewUrlParser:true,useUnifiedTopology:true},(err)=>{
+mongoose.connect(process.env.DATABASE_CONNECTION_URL,{useNewUrlParser:true,useUnifiedTopology:true},(err)=>{
     if(err)
     {
         console.log(err);
@@ -25,6 +25,10 @@ mongoose.connect("mongodb://localhost:27017/memoriesdb",{useNewUrlParser:true,us
     }
 })
 mongoose.set('useFindAndModify', false);
+
+app.get('/',(req,res)=>{
+    res.send("This server is runnig !!!");
+})
 
 
 app.use('/posts',postRoutes);
