@@ -4,7 +4,7 @@ export default makeStyles((theme) => ({
   media: {
     borderRadius: '20px',
     objectFit: 'cover',
-    width: '100%',
+    width:'100%',
     maxHeight: '600px',
 
   },
@@ -17,14 +17,29 @@ export default makeStyles((theme) => ({
     },
   },
   section: {
+    width:'50%',
+    [theme.breakpoints.down('sm')]:{
+      width:'100%'
+    },
     borderRadius: '20px',
     margin: '10px',
     flex: 1,
   },
+  recommendedsection: {
+    borderRadius: '20px',
+    margin: '20px',
+    flex: 1,
+  },
   imageSection: {
     marginLeft: '20px',
+    [theme.breakpoints.down('lg')]:{
+      width: '50%',
+    height:'50%',
+    },
     [theme.breakpoints.down('sm')]: {
-      marginLeft: 0,
+      margin: 0,
+      width:'100%',
+      height:'100%',
     },
   },
   recommendedPosts: {
@@ -36,4 +51,22 @@ export default makeStyles((theme) => ({
   loadingPaper: {
     display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '15px', height: '39vh',
   },
+  outercontainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      flexWrap: 'wrap',
+      flexDirection: 'column',
+    },
+  },
+  innercontainer: {
+    height: '200px',
+    overflowY: 'auto',
+    marginRight: '30px',
+    width:'100%'
+  },
+  commentword:{
+    wordWrap:'break-word',
+    width:'100%'
+  }
 }));

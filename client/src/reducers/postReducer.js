@@ -21,6 +21,8 @@ const postReducer=(state={posts:[],loading:true},action)=>{
                     return {...state,posts:state.posts.map(post=>post._id===action.payload._id ? action.payload:post)};
                     case 'UPDATE_POST':
                         return {...state,posts:state.posts.map(post=>post._id===action.payload._id ? action.payload:post)};
+                        case 'POST_COMMENT':
+                            return {...state,posts:state.posts.map(post=>post._id===action.payload._id ? action.payload:post)};
         default:
             return state;
     }

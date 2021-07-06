@@ -116,3 +116,19 @@ export const updateData=async(req,res)=>{
         console.log(error);
     }
 }
+
+export const PostComment=async(req,res)=>{
+    const comment=req.body.comment;
+    const {id}=req.params;
+    // console.log(comment);
+    // console.log(id);
+    try {
+        const post=await PostMessage.findById(id);
+        post.comments.push(comment);
+        const post_after_comment=await PostMessage.findByIdAndUpdate({_id:id},post,{new:true});
+        res.send(post_after_comment);
+    } catch (error) {
+        console.log(error);
+        res.json({status:500,message:error});
+    }
+}

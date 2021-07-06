@@ -127,3 +127,19 @@ export const updatePost=(Data)=>async(dispatch)=>{
         console.log(error);
     }
 }
+
+export const postComment=(comment,post_id)=>async(dispatch)=>{
+    // console.log(comment);
+    // console.log(post_id);
+    try {
+        const {data}=await api.PostComment(comment,post_id);
+        // console.log(data);
+        const postCommentobj={
+            type:'POST_COMMENT',
+            payload:data
+        };
+        dispatch(postCommentobj);
+    } catch (error) {
+        console.log(error);
+    }
+}

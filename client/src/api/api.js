@@ -30,6 +30,8 @@ export const likePost=(id)=>API.patch(`/posts`,{user_id:id});
 
 export const updatePost=(Data)=>API.put(`/posts`,{updatedPost:Data});
 
+export const PostComment=(c,post_id)=>API.post(`/posts/comment/${post_id}`,{comment:c});
+
 
 export const signIn=(UserDetails)=>API.post(`/users/signin`,UserDetails);
 

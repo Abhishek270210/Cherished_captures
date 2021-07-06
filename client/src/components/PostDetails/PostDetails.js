@@ -6,13 +6,13 @@ import  moment  from 'moment';
 import {useHistory,useParams} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import { getParticularData, getsearchData } from '../../actions/postactions';
+import Commentsection from './Commentsection';
 
 
 const PostDetails = () => {
     const classes=useStyles();
+
     const {particularpost,posts,loading}=useSelector((state)=>state.postReducer);
-    // console.log(particularpost);
-    // console.log(posts);
     const {id}=useParams();
     const dispatch = useDispatch();
     const history=useHistory();
@@ -40,6 +40,11 @@ const PostDetails = () => {
       </Paper>)
     }
 
+    if(particularpost===undefined)
+    {
+      history.push('/');
+    }
+
     const recommendedPosts=posts.filter(post=>post._id!==particularpost._id);
 
     const openPost=(id)=>{
@@ -48,7 +53,7 @@ const PostDetails = () => {
 
 
     return (
-      <>
+      <div>
         <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
       <div className={classes.card}>
         <div className={classes.section}>
@@ -62,6 +67,9 @@ const PostDetails = () => {
           <Divider style={{ margin: '20px 0' }} />
           <Typography variant="body1">{moment(particularpost.time).fromNow()}</Typography>
           <Divider style={{ margin: '20px 0' }} />
+          <Typography gutterBottom variant="h5">Comments:</Typography>
+           <Commentsection post={particularpost} />
+          <Divider style={{margin:'20px 0'}} />
         </div>
         <div className={classes.imageSection}>
           <img className={classes.media} src={particularpost.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={particularpost.title} />
@@ -75,7 +83,7 @@ const PostDetails = () => {
        {/* recommended posts section  */}
        { recommendedPosts.length ? 
        (
-            <div className={classes.section}>
+            <div className={classes.recommendedsection}>
           <Typography gutterBottom variant="h5">You might also like:</Typography>
           <Divider />
           <div className={classes.recommendedPosts}>
@@ -100,7 +108,7 @@ const PostDetails = () => {
 
 
       </Paper>
-      </>
+      </div>
     )
 }
 

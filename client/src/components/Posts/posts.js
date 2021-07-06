@@ -16,7 +16,7 @@ const Posts=({curr,setCurrent})=> {
         return (<CircularProgress />);
     }
 
-    if(!allposts.length)
+    if(!allposts?.length)
     {
       return (
         <Card>
