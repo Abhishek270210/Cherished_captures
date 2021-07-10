@@ -43,6 +43,7 @@ const PostDetails = () => {
     if(particularpost===undefined)
     {
       history.push('/');
+      return;
     }
 
     const recommendedPosts=posts.filter(post=>post._id!==particularpost._id);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import dotenv from 'dotenv';
 import { Avatar, Button, Paper, Grid, Typography, Container, TextField } from '@material-ui/core';
 import { LockRounded } from '@material-ui/icons'
 import useStyles from './styles';
@@ -10,6 +11,9 @@ import {useDispatch}  from 'react-redux';
 
 // all the components in the route of browserRouter already get the access to the history as a prop if we do not pass then also...
 const Authpage = () => {
+
+    dotenv.config();
+
     const initialstate = {
         firstname: '',
         lastname: '',
@@ -22,6 +26,7 @@ const Authpage = () => {
     const [formData, setFormdata] = useState(initialstate);
     const dispatch = useDispatch();
     const history=useHistory();
+    const CLIENT_ID=process.env.GOOGLE_CLIENT_ID;
 
 
     const toggleMode = () => {
@@ -93,7 +98,7 @@ const Authpage = () => {
                     </Grid>
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{!signUp ? "Log in" : "Sign Up"}</Button>
                     <GoogleLogin
-                        clientId="926484618337-25oe3oqglduvqqjpfjk2pkl3lrnmg8ki.apps.googleusercontent.com"
+                        clientId={CLIENT_ID}
                         render={(renderProps) => (
                             <Button className={classes.googleButton} color="secondary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} variant="contained">
                                 Google Sign In
